@@ -27,5 +27,7 @@ Megの個人サイト（暮らしの博物館）。Astro で作り、Cloudflare 
 - 元パートナーに関することは一切書かない
 - 宿泊のことは書かない
 
-## 公開
-- Cloudflare Pages：ビルドコマンド `npm run build`、出力フォルダ `dist`
+## 公開（Cloudflare Workers）
+- Compute → Workers & Pages → 作成 → リポジトリをインポート → kurashi-museum
+- ビルドコマンド：`npm run build`
+- デプロイコマンド：`npx wrangler deploy`（設定は `wrangler.jsonc`）

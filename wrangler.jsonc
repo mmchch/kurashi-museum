@@ -1,0 +1,9 @@
+{
+  // Cloudflare で公開するための設定（教室のサイトと同じ Workers 方式）
+  // npm run build で dist にできたページを、そのまま公開する
+  "name": "kurashi-museum",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
