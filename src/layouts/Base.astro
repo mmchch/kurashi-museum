@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-interface Props { title?: string; description?: string; }
-const { title, description = 'こういう人間が生息しています。— 暮らしの品々と、その物語。' } = Astro.props;
+interface Props { title?: string; description?: string; greeting?: boolean; }
+const { title, greeting = false, description = 'こういう人間が生息しています。— 暮らしの品々と、その物語。' } = Astro.props;
 const full = title ? `${title}｜こういう人間が生息しています。` : 'こういう人間が生息しています。';
 ---
 <!doctype html>
@@ -26,6 +26,11 @@ const full = title ? `${title}｜こういう人間が生息しています。` 
       <a href="/#visit">一緒に過ごす</a>
     </nav>
   </header>
+  {greeting && (
+    <div class="wrap greeting">
+      <p>こんにちは。メグミです☺️<br />佐賀でヨガと英語の教室をしながら、好きなコト、モノに囲まれて人生をなるだけ楽しみながら生きてます。私の好きなモノ、コトを覗いてみませんか？</p>
+    </div>
+  )}
   <slot />
   <footer class="site-foot">自然のめぐみ・セルフケア by 自然の英語工房</footer>
 </body>

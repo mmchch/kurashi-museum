@@ -8,7 +8,7 @@ const hero = items[items.length - 1] ? items.find((i) => i.href.includes('purple
 const kotoba = (await getCollection('cards', (c) => c.data.kind === 'ことば')).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
 const photos = (await albumPhotos()).slice(0, 8);
 ---
-<Base>
+<Base greeting>
   <section class="wrap split" style="padding-top:56px;padding-bottom:72px;align-items:center;gap:48px">
     {hero && <a class="left" href={hero.href} style="max-width:520px"><img src={hero.photo} alt={hero.alt} style="width:100%;height:640px;object-fit:cover;object-position:60% 30%;border-radius:4px" /></a>}
     <div class="right">
