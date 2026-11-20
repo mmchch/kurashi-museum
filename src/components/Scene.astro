@@ -1,0 +1,52 @@
+---
+// 博物館の1枚：写真の中の丸を押すと、その品物のひとことが出る
+import { getEntry } from 'astro:content';
+interface Props { scene: any }
+const { scene } = Astro.props;
+const spots = await Promise.all(scene.data.spots.map(async (s: any, i: number) => {
+  const card = await getEntry('cards', s.card);
+  if (!card) throw new Error(`カードが見つかりません: ${s.card}`);
+  return { ...s, n: i + 1, card, id: `${scene.id}-${i + 1}` };
+}));
+---
+<div class="scene" data-scene>
+  <img src={scene.data.photo} alt={scene.data.alt} />
+  {spots.map((s) => (
+    <button class="dot" type="button" aria-expanded={s.n === 1 ? 'true' : 'false'} aria-controls={s.id}
+      aria-label={`${s.card.data.title}のひとこと`} style={`left:${s.x}%;top:${s.y}%`}>{s.n}</button>
+  ))}
+  {spots.map((s) => (
+    <div class="pop" id={s.id} role="region" aria-label={s.card.data.title} hidden={s.n !== 1}
+      style={`left:${s.popX}%;top:${s.popY}%`}>
+      <p class="pop-title">{s.card.data.title}</p>
+      {s.card.data.hitokoto.map((line: string) => <p>{line}</p>)}
+      {s.card.data.hitokotoPhoto && (
+        <div class="pop-photo">
+          <img src={s.card.data.hitokotoPhoto.src} alt={s.card.data.hitokotoPhoto.alt} loading="lazy" />
+          {s.card.data.hitokotoPhoto.caption && <span>{s.card.data.hitokotoPhoto.caption}</span>}
+        </div>
+      )}
+      {s.card.data.page && <a href={`/stories/${s.card.id}/`}>もっと読む →</a>}
+    </div>
+  ))}
+</div>
+<script>
+  document.querySelectorAll('[data-scene]').forEach((scene) => {
+    const dots = scene.querySelectorAll('.dot');
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const open = dot.getAttribute('aria-expanded') === 'true';
+        dots.forEach((d) => {
+          d.setAttribute('aria-expanded', 'false');
+          const p = document.getElementById(d.getAttribute('aria-controls')!);
+          if (p) p.hidden = true;
+        });
+        if (!open) {
+          dot.setAttribute('aria-expanded', 'true');
+          const p = document.getElementById(dot.getAttribute('aria-controls')!);
+          if (p) p.hidden = false;
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ALBUM_TAGS, albumPhotos } from '../../lib';
+const photos = await albumPhotos();
+---
+<Base title="アルバム">
+  <main class="wrap" style="padding-top:48px;padding-bottom:88px">
+    <h1 class="hand" style="margin:0 0 24px;font-size:32px">アルバム</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
+      <a class="chip on" href="/album/">すべて</a>
+      {ALBUM_TAGS.map((t) => <a class="chip" href={`/album/${t}/`}>{t}</a>)}
+    </div>
+    <div class="album">{photos.map((p) => <a href={p.href}><img src={p.src} alt={p.alt} loading="lazy" /></a>)}</div>
+  </main>
+</Base>

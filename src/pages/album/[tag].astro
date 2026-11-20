@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ALBUM_TAGS, albumPhotos } from '../../lib';
+export function getStaticPaths() {
+  return ALBUM_TAGS.map((tag) => ({ params: { tag } }));
+}
+const { tag } = Astro.params;
+const photos = (await albumPhotos()).filter((p) => p.tags.includes(tag!));
+---
+<Base title={`アルバム：${tag}`}>
+  <main class="wrap" style="padding-top:48px;padding-bottom:88px">
+    <h1 class="hand" style="margin:0 0 24px;font-size:32px">アルバム</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
+      <a class="chip" href="/album/">すべて</a>
+      {ALBUM_TAGS.map((t) => <a class={t === tag ? 'chip on' : 'chip'} href={`/album/${t}/`} aria-current={t === tag ? 'page' : undefined}>{t}</a>)}
+    </div>
+    {photos.length
+      ? <div class="album">{photos.map((p) => <a href={p.href}><img src={p.src} alt={p.alt} loading="lazy" /></a>)}</div>
+      : <p style="color:var(--sub)">「{tag}」の写真は、これから増えていきます。</p>}
+  </main>
+</Base>

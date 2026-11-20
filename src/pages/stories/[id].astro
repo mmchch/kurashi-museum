@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Tip from '../../components/Tip.astro';
+import Sanki from '../../components/Sanki.astro';
+import { dateLabel } from '../../lib';
+export async function getStaticPaths() {
+  const cards = await getCollection('cards', (c) => c.data.page);
+  return cards.map((card) => ({ params: { id: card.id }, props: { card } }));
+}
+const { card } = Astro.props;
+const { Content } = await render(card);
+const d = card.data;
+// この品物が写っている博物館の写真（もどる先）
+const scenes = await getCollection('scenes');
+const home = scenes.find((s) => s.data.spots.some((sp) => sp.card === card.id));
+const back = home ? `/museum/${home.id}/` : '/#museum';
+---
+<Base title={d.title}>
+  <section class="wrap split" style="padding-top:48px;padding-bottom:56px;align-items:flex-end">
+    {d.photo && <img class="left" src={d.photo} alt={d.alt ?? ''} style="width:100%;height:640px;object-fit:cover;border-radius:4px;max-width:500px" />}
+    <div class="right">
+      <p class="label">{[dateLabel(d.date), ...d.tags].join(' ・ ')}</p>
+      <h1 class="hand" style="margin:0 0 24px;font-size:36px;line-height:1.5">{d.title}</h1>
+      {d.hitokoto.map((line) => <p class="hand" style="margin:0;font-size:19px;font-weight:400">{line}</p>)}
+    </div>
+  </section>
+  <article class="narrow prose" style="padding-bottom:64px">
+    <Content components={{ Tip, Sanki }} />
+  </article>
+  <nav class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-top:32px;padding-bottom:16px;border-top:1px solid var(--line);font-size:14px" aria-label="ページ移動">
+    <a href={back} style="color:var(--ink);text-decoration:none">← {home ? '写真にもどる' : '博物館の入り口へ'}</a>
+    <a href="/#museum" style="color:var(--ink);text-decoration:none">博物館の入り口へ</a>
+  </nav>
+</Base>

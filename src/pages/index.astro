@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Tip from '../components/Tip.astro';
+import { ALBUM_TAGS, albumPhotos, museumItems, dateKey } from '../lib';
+const items = await museumItems();
+const hero = items[items.length - 1] ? items.find((i) => i.href.includes('purple-vest-day')) ?? items[0] : null;
+const kotoba = (await getCollection('cards', (c) => c.data.kind === 'ことば')).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
+const photos = (await albumPhotos()).slice(0, 8);
+---
+<Base>
+  <section class="wrap split" style="padding-top:56px;padding-bottom:72px;align-items:center;gap:48px">
+    {hero && <a class="left" href={hero.href} style="max-width:520px"><img src={hero.photo} alt={hero.alt} style="width:100%;height:640px;object-fit:cover;object-position:60% 30%;border-radius:4px" /></a>}
+    <div class="right">
+      <p class="label">LIFE &amp; STORIES</p>
+      <h1 class="hand" style="margin:0 0 24px;font-size:44px;line-height:1.5">私は私。</h1>
+      <p style="margin:0 0 32px;max-width:30em">サラッとしててユルい。飾らない私をサラッと出す。</p>
+      {hero && <a class="btn" href={hero.href}>博物館に入る</a>}
+    </div>
+  </section>
+
+  <section id="museum" class="wrap" style="padding-top:48px;padding-bottom:48px">
+    <h2 class="hand" style="margin:0 0 6px;font-size:28px">暮らしの博物館</h2>
+    <p style="margin:0 0 32px;font-size:14px;color:var(--sub)">写真の中を押すと、物語が読めます。</p>
+    <div class="grid">
+      {items.map((i) => (
+        <a class="card" href={i.href}>
+          <img src={i.photo} alt={i.alt} loading="lazy" />
+          <p class="card-title">{i.title}</p>
+          <p class="card-meta">{i.tags.join('・')}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="kotoba" style="background:var(--bg2);margin-top:48px">
+    {kotoba.map((k) => (
+      <div class="narrow" style="padding-top:88px;padding-bottom:88px;text-align:center">
+        <p class="label" style="margin-bottom:28px">ことば</p>
+        <p class="hand" style="margin:0;font-size:26px;line-height:2;font-weight:400">{k.data.hitokoto.map((l, n) => <>{n > 0 && <br />}{l}</>)}</p>
+        {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={`/stories/${k.data.related[0]}/`}>この言葉が生まれた日 →</a></p>}
+      </div>
+    ))}
+  </section>
+
+  <section id="album" class="wrap" style="padding-top:88px;padding-bottom:48px">
+    <h2 class="hand" style="margin:0 0 24px;font-size:28px">アルバム</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
+      {ALBUM_TAGS.map((t) => <a class="chip" href={`/album/${t}/`}>{t}</a>)}
+    </div>
+    <div class="album">
+      {photos.map((p) => <a href={p.href}><img src={p.src} alt={p.alt} loading="lazy" /></a>)}
+    </div>
+    <p style="margin-top:24px"><a href="/album/">アルバムをもっと見る →</a></p>
+  </section>
+
+  <section id="about" class="wrap" style="padding-top:64px;padding-bottom:64px;border-top:1px solid var(--line)">
+    <div class="split" style="gap:48px">
+      <h2 class="hand" style="flex:1 1 260px;margin:0;font-size:28px">このサイトについて</h2>
+      <div style="flex:999 1 420px;min-width:0">
+        <p style="margin:0 0 16px">品物は入り口。ストーリーが橋渡し。<br />その先にあるのは、自分自身への気づき。</p>
+        <p style="margin:0 0 8px">私は可愛くておしゃれでかつ、機能性に優れたもの快適なもの便利なものが好き。</p>
+        <p style="margin:0 0 20px;color:var(--sub)">Function is Beauty</p>
+        <div style="max-width:520px">
+          <Tip>
+            <p><b>Function is Beauty</b> ＝ 役に立つことが、美しい。</p>
+            <p class="tip-sub"><b>function</b>（ファンクション）：機能、はたらき。<b>beauty</b>（ビューティー）：美しさ。</p>
+            <p class="tip-sub"><b>is</b>（be動詞）：「A is B」で「A ＝ B」。左と右を「等しい」でつなぐ。Function ＝ Beauty、機能と美しさは同じもの、という意味になる。</p>
+            <p class="tip-sub">補足：function と beauty に a や the が付いていないのは、「この機能」「あの美しさ」ではなく、「機能というもの」「美しさというもの」全般を指しているから。ことわざや標語でよく見る形（例：Time is money. 時は金なり）。</p>
+          </Tip>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="wrap" style="padding-top:64px;padding-bottom:96px;border-top:1px solid var(--line)">
+    <div class="split" style="gap:48px">
+      <h2 class="hand" style="flex:1 1 260px;margin:0;font-size:28px">ここで一緒に過ごしましょ</h2>
+      <div style="flex:999 1 420px;min-width:0;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start">
+        <a class="btn" href="https://shizen-megumi.pages.dev">クラス・イベント（教室のサイト）</a>
+        <a class="btn" href="https://www.instagram.com/egkb/">Instagram（@egkb）</a>
+      </div>
+    </div>
+  </section>
+</Base>
