@@ -36,8 +36,8 @@ const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセ�
   </section>
 
   <section id="kotoba" style="background:var(--bg2);margin-top:48px">
-    <p class="label" style="margin:0;padding-top:88px;text-align:center">ことば</p>
-    {kotoba.map((k) => (
+    <p class="label" style="margin:0;padding-top:88px;text-align:center">ことば・エッセイ</p>
+    {kotoba.slice(0, 2).map((k) => (
       <div class="narrow" style="padding-top:48px;padding-bottom:48px;text-align:center">
         <p class="hand" style="margin:0;font-size:26px;line-height:2;font-weight:400">{k.data.hitokoto.map((l, n) => <>{n > 0 && <br />}{l}</>)}</p>
         {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={sceneIds.has(k.data.related[0]) ? `/museum/${k.data.related[0]}/` : `/stories/${k.data.related[0]}/`}>この言葉が生まれた日 →</a></p>}
@@ -47,7 +47,7 @@ const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセ�
     {essays.length > 0 && (
       <div class="narrow" style="padding-bottom:72px">
         <p class="label" style="margin-bottom:16px;text-align:center">エッセイ</p>
-        {essays.map((e) => (
+        {essays.slice(0, 3).map((e) => (
           <a href={`/stories/${e.id}/`} style="display:block;padding:16px 0;border-top:1px solid #D9CDBE;color:var(--ink);text-decoration:none">
             <span class="hand" style="font-size:20px">{e.data.title}</span>
             <span style="display:block;font-size:13px;color:var(--mute)">{dateLabel(e.data.date)}</span>
@@ -55,6 +55,7 @@ const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセ�
         ))}
       </div>
     )}
+    <p style="margin:0;padding-bottom:72px;text-align:center"><a href="/kotoba/">ことば・エッセイをもっと読む →</a></p>
   </section>
 
   <section id="album" class="wrap" style="padding-top:88px;padding-bottom:48px">
