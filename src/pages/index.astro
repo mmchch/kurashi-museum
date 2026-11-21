@@ -2,11 +2,12 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Tip from '../components/Tip.astro';
-import { ALBUM_TAGS, albumPhotos, museumItems, dateKey } from '../lib';
+import { ALBUM_TAGS, albumPhotos, museumItems, dateKey, dateLabel } from '../lib';
 const items = await museumItems();
 const hero = items[items.length - 1] ? items.find((i) => i.href.includes('purple-vest-day')) ?? items[0] : null;
 const kotoba = (await getCollection('cards', (c) => c.data.kind === 'ことば')).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
 const photos = (await albumPhotos()).slice(0, 8);
+const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセイ' && c.data.page)).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
 ---
 <Base greeting>
   <section class="wrap split" style="padding-top:56px;padding-bottom:72px;align-items:center;gap:48px">
@@ -41,6 +42,17 @@ const photos = (await albumPhotos()).slice(0, 8);
         {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={`/stories/${k.data.related[0]}/`}>この言葉が生まれた日 →</a></p>}
       </div>
     ))}
+    {essays.length > 0 && (
+      <div class="narrow" style="padding-bottom:72px">
+        <p class="label" style="margin-bottom:16px;text-align:center">エッセイ</p>
+        {essays.map((e) => (
+          <a href={`/stories/${e.id}/`} style="display:block;padding:16px 0;border-top:1px solid #D9CDBE;color:var(--ink);text-decoration:none">
+            <span class="hand" style="font-size:20px">{e.data.title}</span>
+            <span style="display:block;font-size:13px;color:var(--mute)">{dateLabel(e.data.date)}</span>
+          </a>
+        ))}
+      </div>
+    )}
   </section>
 
   <section id="album" class="wrap" style="padding-top:88px;padding-bottom:48px">
