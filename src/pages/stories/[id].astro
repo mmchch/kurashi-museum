@@ -18,7 +18,7 @@ const back = home ? `/museum/${home.id}/` : '/#museum';
 ---
 <Base title={d.title}>
   <section class="wrap split" style="padding-top:48px;padding-bottom:56px;align-items:flex-end">
-    {d.photo && <img class="left" src={d.photo} alt={d.alt ?? ''} style="width:100%;height:640px;object-fit:cover;border-radius:4px;max-width:500px" />}
+    {d.photo && <img class="left" src={d.photo} alt={d.alt ?? ''} style="width:100%;height:auto;max-height:640px;object-fit:cover;border-radius:4px;max-width:500px" />}
     <div class="right">
       <p class="label">{[dateLabel(d.date), ...d.tags].join(' ・ ')}</p>
       <h1 class="hand" style="margin:0 0 24px;font-size:36px;line-height:1.5">{d.title}</h1>
@@ -27,6 +27,7 @@ const back = home ? `/museum/${home.id}/` : '/#museum';
   </section>
   <article class="narrow prose" style="padding-bottom:64px">
     <Content components={{ Tip, Sanki }} />
+    {d.gallery && d.photos.length > 0 && <div class="story-photos">{d.photos.map((ph) => <img src={ph.src} alt={ph.alt} loading="lazy" />)}</div>}
   </article>
   <nav class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-top:32px;padding-bottom:16px;border-top:1px solid var(--line);font-size:14px" aria-label="ページ移動">
     <a href={back} style="color:var(--ink);text-decoration:none">← {home ? '写真にもどる' : '博物館の入り口へ'}</a>

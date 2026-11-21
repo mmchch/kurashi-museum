@@ -33,6 +33,7 @@ const cards = defineCollection({
     photo: z.string().optional(),
     alt: z.string().optional(),
     photos: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
+    gallery: z.boolean().default(false),          // trueならページの下にphotosを並べる
     hitokoto: z.array(z.string()).default([]),   // 押したときに出る文（本文からそのまま）
     hitokotoPhoto: z.object({ src: z.string(), alt: z.string(), caption: z.string().optional() }).optional(),
     page: z.boolean().default(false),            // 「もっと読む」のページを作るか
