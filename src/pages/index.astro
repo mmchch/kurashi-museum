@@ -7,6 +7,7 @@ const items = await museumItems();
 const hero = items[items.length - 1] ? items.find((i) => i.href.includes('purple-vest-day')) ?? items[0] : null;
 const kotoba = (await getCollection('cards', (c) => c.data.kind === 'ことば')).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
 const photos = (await albumPhotos()).slice(0, 8);
+const sceneIds = new Set((await getCollection('scenes')).map((s) => s.id));
 const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセイ' && c.data.page)).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
 ---
 <Base greeting>
@@ -39,7 +40,7 @@ const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセ�
     {kotoba.map((k) => (
       <div class="narrow" style="padding-top:48px;padding-bottom:48px;text-align:center">
         <p class="hand" style="margin:0;font-size:26px;line-height:2;font-weight:400">{k.data.hitokoto.map((l, n) => <>{n > 0 && <br />}{l}</>)}</p>
-        {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={`/stories/${k.data.related[0]}/`}>この言葉が生まれた日 →</a></p>}
+        {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={sceneIds.has(k.data.related[0]) ? `/museum/${k.data.related[0]}/` : `/stories/${k.data.related[0]}/`}>この言葉が生まれた日 →</a></p>}
         <p style="margin:20px 0 0;font-size:13px;color:var(--mute)">{dateLabel(k.data.date)}</p>
       </div>
     ))}

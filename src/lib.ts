@@ -1,9 +1,12 @@
 // 日付の表示：2026-11-05 → 2026年11月5日（それ以外の書き方はそのまま）
 export function dateLabel(d?: string): string {
   if (!d) return '';
-  const m = d.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!m) return d;
-  return `${m[1]}年${Number(m[2])}月${Number(m[3])}日`;
+  let m = d.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return `${m[1]}年${Number(m[2])}月${Number(m[3])}日`;
+  m = d.match(/^(\d{4})-(\d{2})$/);
+  if (m) return `${m[1]}年${Number(m[2])}月`;
+  if (/^\d{4}$/.test(d)) return `${d}年`;
+  return d;
 }
 // 年表などで並べるための数字（わからない部分は0）
 export function dateKey(d?: string): number {
