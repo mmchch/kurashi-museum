@@ -36,6 +36,7 @@ const cards = defineCollection({
     hitokoto: z.array(z.string()).default([]),   // 押したときに出る文（本文からそのまま）
     hitokotoPhoto: z.object({ src: z.string(), alt: z.string(), caption: z.string().optional() }).optional(),
     page: z.boolean().default(false),            // 「もっと読む」のページを作るか
+    more: z.string().optional(),                 // 「もっと読む」で別のカードのページへ飛ばすとき（カードのファイル名）
     related: z.array(z.string()).default([]),    // つながりのあるカード
   }),
 });

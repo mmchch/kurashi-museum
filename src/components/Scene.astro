@@ -26,7 +26,7 @@ const spots = await Promise.all(scene.data.spots.map(async (s: any, i: number) =
           {s.card.data.hitokotoPhoto.caption && <span>{s.card.data.hitokotoPhoto.caption}</span>}
         </div>
       )}
-      {s.card.data.page && <a href={`/stories/${s.card.id}/`}>もっと読む →</a>}
+      {(s.card.data.page || s.card.data.more) && <a href={`/stories/${s.card.data.more ?? s.card.id}/`}>もっと読む →</a>}
     </div>
   ))}
 </div>
