@@ -3,6 +3,8 @@
   // npm run build で dist にできたページを、そのまま公開する
   "name": "kurashi-museum",
   "compatibility_date": "2026-11-01",
+  // workers.dev のURLで見られるようにする
+  "workers_dev": true,
   "assets": {
     "directory": "./dist"
   }
