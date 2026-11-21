@@ -48,10 +48,14 @@ const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセ�
       <div class="narrow" style="padding-bottom:72px">
         <p class="label" style="margin-bottom:16px;text-align:center">エッセイ</p>
         {essays.slice(0, 3).map((e) => (
-          <a href={`/stories/${e.id}/`} style="display:block;padding:16px 0;border-top:1px solid #D9CDBE;color:var(--ink);text-decoration:none">
-            <span class="hand" style="font-size:20px">{e.data.title}</span>
+          <a href={`/stories/${e.id}/`} class="essay-item">
+          {e.data.photo && <img src={e.data.photo} alt="" loading="lazy" />}
+          <span class="essay-text">
+            <span class="hand" style="display:block;font-size:21px;line-height:1.6">{e.data.title}</span>
+            <span style="display:block;font-size:14px;color:var(--sub);margin-top:4px">{e.data.hitokoto[0]}</span>
             <span style="display:block;font-size:13px;color:var(--mute)">{dateLabel(e.data.date)}</span>
-          </a>
+          </span>
+        </a>
         ))}
       </div>
     )}

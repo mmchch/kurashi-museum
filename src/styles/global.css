@@ -72,3 +72,9 @@ a{color:var(--accent)} a:hover{color:var(--accent-dark)}
 /* トップページの挨拶 */
 .greeting{padding-top:10px}
 .greeting p{margin:0 0 12px;max-width:34em;font-size:14px;line-height:1.9;color:var(--sub)}
+
+/* エッセイの一覧（サムネイル付き） */
+.essay-item{display:flex;gap:20px;align-items:center;padding:18px 0;border-top:1px solid #D9CDBE;color:var(--ink);text-decoration:none}
+.essay-item img{flex:0 0 96px;width:96px;height:120px;object-fit:cover;border-radius:4px}
+.essay-item .essay-text{flex:1;min-width:0}
+.essay-item:hover .hand{color:var(--accent)}
