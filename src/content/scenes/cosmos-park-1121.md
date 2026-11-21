@@ -1,19 +1,17 @@
 ---
 title: コスモス公園でチョロッとだけヨガ
-kind: 風景
 date: "2026-11-21"
-tags: [近くの風景, 音とからだ]
+tags: [近くの風景, 音とからだ, コーデ]
 photo: /images/cosmos-yoga-1.jpg
 alt: 近くのコスモス公園。青空の下、コスモスを背にヨガのポーズをとるめぐみ
-photos:
-  - src: /images/cosmos-field.jpg
-    alt: 色づいた木と山を背に、一面に咲くコスモスと菜の花
-  - src: /images/cosmos-yoga-2.jpg
-    alt: コスモス畑の前で、しゃがんで手を合わせるポーズ
-  - src: /images/cosmos-yoga-3.jpg
-    alt: コスモス畑の前で、足を大きく開いて体をひねるポーズ
-page: true
-gallery: true
+extraPhotos:
+  - { src: /images/cosmos-field.jpg, alt: 色づいた木と山を背に、一面に咲くコスモスと菜の花 }
+  - { src: /images/cosmos-yoga-2.jpg, alt: コスモス畑の前で、しゃがんで手を合わせるポーズ }
+  - { src: /images/cosmos-yoga-3.jpg, alt: コスモス畑の前で、足を大きく開いて体をひねるポーズ }
+spots:
+  - { card: magenta-scarf, x: 25, y: 57, popX: 3, popY: 60 }
+  - { card: orange-bag, x: 47, y: 56, popX: 3, popY: 60 }
+  - { card: merrell-shoes, x: 83, y: 83, popX: 3, popY: 60 }
 ---
 
 今朝✨最近、雨が降ったり晴れたりと忙しい天気が続いてるからか、緑がイキイキ✨近くのコスモス公園はコスモスに紛れて菜の花まで咲いていた💦写真で見えるかな？<br />
