@@ -6,7 +6,7 @@ photo: /images/india-shirt.jpg
 alt: リビングに立つめぐみ。インドで買ったオレンジ色のヒラヒラのシャツに、長いビーズのピアスと麻のパンツ
 spots:
   - { card: india-shirt, x: 61, y: 64, popX: 3, popY: 64 }
-  - { card: beads-earrings, x: 50, y: 41, popX: 3, popY: 64 }
+  - { card: beads-earrings, x: 45, y: 45, popX: 3, popY: 64 }
   - { card: muji-linen-pants, x: 59, y: 85, popX: 3, popY: 64 }
   - { card: sansevieria, x: 20, y: 60, popX: 3, popY: 64 }
   - { card: kapok, x: 89, y: 44, popX: 3, popY: 64 }

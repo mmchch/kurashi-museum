@@ -40,20 +40,21 @@ a{color:var(--accent)} a:hover{color:var(--accent-dark)}
 .tip .tip-sub{color:var(--sub)}
 
 /* 博物館：写真の中の丸 */
-.scene{position:relative}
-.scene > img{width:100%;border-radius:4px}
-.dot{position:absolute;z-index:2;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:2px solid #fff;background:rgba(58,51,44,.55);color:#fff;font-family:var(--sans);font-size:13px;cursor:pointer;padding:0;box-shadow:0 0 0 6px rgba(255,255,255,.35)}
-.dot[aria-expanded="true"]{background:var(--accent);box-shadow:0 0 0 8px rgba(154,85,54,.3)}
-.pop{position:absolute;z-index:1;width:56%;max-width:320px;background:rgba(247,243,236,.97);border-radius:6px;padding:18px 20px;box-shadow:0 6px 24px rgba(58,51,44,.18)}
+.scene-photo{position:relative}
+.scene-photo > img{width:100%;border-radius:4px;display:block}
+/* 押せる範囲は44px、見た目は小さな点 */
+.dot{position:absolute;z-index:2;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.dot span{display:block;width:24px;height:24px;border-radius:50%;border:2px solid #fff;background:rgba(58,51,44,.55);color:#fff;font-family:var(--sans);font-size:11px;line-height:20px;text-align:center;box-shadow:0 0 0 3px rgba(255,255,255,.3);transition:transform .15s}
+.dot:hover span,.dot:focus-visible span{transform:scale(1.15)}
+.dot[aria-expanded="true"] span{background:var(--accent);box-shadow:0 0 0 4px rgba(154,85,54,.35)}
+/* ひとことは写真の下に出す（写真に重ならない） */
+.pop{position:static !important;margin-top:14px;padding:18px 20px;background:var(--bg2);border-radius:6px}
 .pop[hidden]{display:none}
 .pop .pop-title{margin:0 0 4px;font-family:var(--hand);font-weight:600;font-size:19px}
 .pop p{margin:0 0 8px;font-size:15px}
 .pop .pop-photo{display:flex;gap:12px;align-items:flex-end;margin-top:8px}
 .pop .pop-photo img{width:96px;height:116px;object-fit:cover;border-radius:3px}
 .pop .pop-photo span{font-size:13px;color:var(--sub)}
-@media (max-width:600px){
-  .pop{position:static;width:auto;max-width:none;margin-top:12px;box-shadow:none;background:var(--bg2)}
-}
 
 /* カード一覧 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:32px}

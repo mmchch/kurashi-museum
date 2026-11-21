@@ -10,14 +10,15 @@ const spots = await Promise.all(scene.data.spots.map(async (s: any, i: number) =
 }));
 ---
 <div class="scene" data-scene>
+  <div class="scene-photo">
   <img src={scene.data.photo} alt={scene.data.alt} />
   {spots.map((s) => (
     <button class="dot" type="button" aria-expanded={s.n === 1 ? 'true' : 'false'} aria-controls={s.id}
-      aria-label={`${s.card.data.title}のひとこと`} style={`left:${s.x}%;top:${s.y}%`}>{s.n}</button>
+      aria-label={`${s.card.data.title}のひとこと`} style={`left:${s.x}%;top:${s.y}%`}><span aria-hidden="true">{s.n}</span></button>
   ))}
+  </div>
   {spots.map((s) => (
-    <div class="pop" id={s.id} role="region" aria-label={s.card.data.title} hidden={s.n !== 1}
-      style={`left:${s.popX}%;top:${s.popY}%`}>
+    <div class="pop" id={s.id} role="region" aria-label={s.card.data.title} hidden={s.n !== 1}>
       <p class="pop-title">{s.card.data.title}</p>
       {s.card.data.hitokoto.map((line: string) => <p>{line}</p>)}
       {s.card.data.hitokotoPhoto && (
