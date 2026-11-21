@@ -16,6 +16,7 @@ const spots = await Promise.all(scene.data.spots.map(async (s: any, i: number) =
     <button class="dot" type="button" aria-expanded={s.n === 1 ? 'true' : 'false'} aria-controls={s.id}
       aria-label={`${s.card.data.title}のひとこと`} style={`left:${s.x}%;top:${s.y}%`}><span aria-hidden="true">{s.n}</span></button>
   ))}
+  {spots.length > 0 && <button class="dots-toggle" type="button" aria-pressed="false">番号をかくす</button>}
   </div>
   {spots.map((s) => (
     <div class="pop" id={s.id} role="region" aria-label={s.card.data.title} hidden={s.n !== 1}>
@@ -34,6 +35,13 @@ const spots = await Promise.all(scene.data.spots.map(async (s: any, i: number) =
 <script>
   document.querySelectorAll('[data-scene]').forEach((scene) => {
     const dots = scene.querySelectorAll('.dot');
+    const toggle = scene.querySelector('.dots-toggle');
+    toggle?.addEventListener('click', () => {
+      const hide = !scene.classList.contains('no-dots');
+      scene.classList.toggle('no-dots', hide);
+      toggle.setAttribute('aria-pressed', String(hide));
+      toggle.textContent = hide ? '番号を出す' : '番号をかくす';
+    });
     dots.forEach((dot) => {
       dot.addEventListener('click', () => {
         const open = dot.getAttribute('aria-expanded') === 'true';
