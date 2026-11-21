@@ -70,4 +70,4 @@ a{color:var(--accent)} a:hover{color:var(--accent-dark)}
 
 /* トップページの挨拶 */
 .greeting{padding-top:10px}
-.greeting p{margin:0;max-width:34em;font-size:14px;line-height:1.9;color:var(--sub)}
+.greeting p{margin:0 0 12px;max-width:34em;font-size:14px;line-height:1.9;color:var(--sub)}
