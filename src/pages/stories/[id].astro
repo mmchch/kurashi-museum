@@ -18,7 +18,14 @@ const back = home ? `/museum/${home.id}/` : '/#museum';
 ---
 <Base title={d.title}>
   <section class="wrap split" style="padding-top:48px;padding-bottom:56px;align-items:flex-end">
-    {d.photo && <img class="left" src={d.photo} alt={d.alt ?? ''} style="width:100%;height:auto;max-height:640px;object-fit:cover;border-radius:4px;max-width:500px" />}
+    {d.photo && d.marks.length === 0 && <img class="left" src={d.photo} alt={d.alt ?? ''} style="width:100%;height:auto;max-height:640px;object-fit:cover;border-radius:4px;max-width:500px" />}
+    {d.photo && d.marks.length > 0 && (
+      <div class="left scene-photo" data-marks style="max-width:500px">
+        <img src={d.photo} alt={d.alt ?? ''} style="width:100%;height:auto;border-radius:4px;display:block" />
+        {d.marks.map((m, i) => <a class="dot" href={`#${m.to}`} aria-label={`${i + 1}. ${m.label}の説明へ`} style={`left:${m.x}%;top:${m.y}%`}><span aria-hidden="true">{i + 1}</span></a>)}
+        <button class="dots-toggle" type="button" aria-pressed="false">番号をかくす</button>
+      </div>
+    )}
     <div class="right">
       <p class="label">{[dateLabel(d.date), ...d.tags].join(' ・ ')}</p>
       <h1 class="hand" style="margin:0 0 24px;font-size:36px;line-height:1.5">{d.title}</h1>
@@ -34,3 +41,14 @@ const back = home ? `/museum/${home.id}/` : '/#museum';
     <a href="/#museum" style="color:var(--ink);text-decoration:none">博物館の入り口へ</a>
   </nav>
 </Base>
+<script>
+  document.querySelectorAll('[data-marks]').forEach((box) => {
+    const t = box.querySelector('.dots-toggle');
+    t?.addEventListener('click', () => {
+      const hide = !box.classList.contains('no-dots');
+      box.classList.toggle('no-dots', hide);
+      t.setAttribute('aria-pressed', String(hide));
+      t.textContent = hide ? '番号を出す' : '番号をかくす';
+    });
+  });
+</script>
