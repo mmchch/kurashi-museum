@@ -5,7 +5,11 @@ tags: [コーデ, 音とからだ]
 photo: /images/dance-1004.jpg
 alt: 紫のトップスにペンダント、柄の布を腰に巻いて、ポーズをとるめぐみ
 spots:
+  - { card: headwrap-15y, x: 35, y: 6, popX: 44, popY: 3 }
   - { card: tigereye-necklace, x: 28, y: 46, popX: 44, popY: 3 }
+  - { card: temu-camisole-green, x: 42, y: 37, popX: 44, popY: 3 }
+  - { card: purple-backless-top, x: 53, y: 63, popX: 44, popY: 3 }
+  - { card: temu-skirt, x: 39, y: 91, popX: 44, popY: 3 }
   - { card: sansevieria, x: 67, y: 66, popX: 44, popY: 3 }
 ---
 
