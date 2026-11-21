@@ -78,3 +78,7 @@ a{color:var(--accent)} a:hover{color:var(--accent-dark)}
 .essay-item img{flex:0 0 96px;width:96px;height:120px;object-fit:cover;border-radius:4px}
 .essay-item .essay-text{flex:1;min-width:0}
 .essay-item:hover .hand{color:var(--accent)}
+.subnav{display:flex;gap:14px;align-items:center;font-size:16px;padding-top:8px;padding-bottom:8px;color:var(--mute)}
+.subnav a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent);padding:6px 2px}
+.subnav a:hover{color:var(--accent)}
+#essay,#kotoba{scroll-margin-top:80px}

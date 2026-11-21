@@ -13,18 +13,11 @@ const link = (id: string) => (sceneIds.has(id) ? `/museum/${id}/` : `/stories/${
       <h1 class="hand" style="margin:0 0 8px;font-size:32px">ことば・エッセイ</h1>
     </div>
 
-    <section style="background:var(--bg2);margin-top:32px">
-      <p class="label" style="margin:0;padding-top:64px;text-align:center">ことば</p>
-      {kotoba.map((k) => (
-        <div class="narrow" style="padding-top:48px;padding-bottom:48px;text-align:center">
-          <p class="hand" style="margin:0;font-size:24px;line-height:2;font-weight:400">{k.data.hitokoto.map((l, n) => <>{n > 0 && <br />}{l}</>)}</p>
-          {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={link(k.data.related[0])}>この言葉が生まれた日 →</a></p>}
-          <p style="margin:16px 0 0;font-size:13px;color:var(--mute)">{dateLabel(k.data.date)}</p>
-        </div>
-      ))}
-    </section>
+    <nav class="subnav wrap" aria-label="ことば・エッセイの中のメニュー">
+      <a href="#essay">エッセイ</a><span aria-hidden="true">｜</span><a href="#kotoba">ことば</a>
+    </nav>
 
-    <section class="narrow" style="padding-top:64px;padding-bottom:88px">
+    <section id="essay" class="narrow" style="padding-top:40px;padding-bottom:72px">
       <p class="label" style="margin-bottom:16px;text-align:center">エッセイ</p>
       {essays.map((e) => (
 <a href={`/stories/${e.id}/`} class="essay-item">
@@ -37,5 +30,16 @@ const link = (id: string) => (sceneIds.has(id) ? `/museum/${id}/` : `/stories/${
         </a>
       ))}
     </section>
+    <section id="kotoba" style="background:var(--bg2)">
+      <p class="label" style="margin:0;padding-top:64px;text-align:center">ことば</p>
+      {kotoba.map((k) => (
+        <div class="narrow" style="padding-top:48px;padding-bottom:48px;text-align:center">
+          <p class="hand" style="margin:0;font-size:24px;line-height:2;font-weight:400">{k.data.hitokoto.map((l, n) => <>{n > 0 && <br />}{l}</>)}</p>
+          {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={link(k.data.related[0])}>この言葉が生まれた日 →</a></p>}
+          <p style="margin:16px 0 0;font-size:13px;color:var(--mute)">{dateLabel(k.data.date)}</p>
+        </div>
+      ))}
+    </section>
+
   </main>
 </Base>
