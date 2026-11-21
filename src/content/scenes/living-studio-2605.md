@@ -5,7 +5,11 @@ tags: [暮らし, 音とからだ]
 photo: /images/living-studio-0518.jpg
 alt: 大きな窓から庭の緑が見えるリビング。木の床に紫のヨガマットが並び、窓辺に観葉植物
 spots:
+  - { card: kapok, x: 8, y: 30, popX: 3, popY: 60 }
+  - { card: grey-mat, x: 47, y: 62, popX: 3, popY: 60 }
   - { card: sansevieria, x: 67, y: 49, popX: 3, popY: 60 }
+  - { card: ikea-console, x: 86, y: 44, popX: 3, popY: 60 }
+  - { card: purple-mats, x: 52, y: 86, popX: 3, popY: 60 }
 ---
 
 最近の構想を思い切ってやってみました💨リビングからの眺めがいいから、ここでヨガクラスできたらいいな〜ってずっと思ってたんですが、諸事情あってモジモジ躊躇。でも、いつもの如く、できそう、なんとかできそう！という内側からの確信を頼りに一気にやってみましたよ💪😆
