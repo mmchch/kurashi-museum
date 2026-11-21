@@ -15,7 +15,7 @@ export function dateKey(d?: string): number {
   if (!m) return 0;
   return Number(m[1]) * 10000 + Number(m[2] ?? 0) * 100 + Number(m[3] ?? 0);
 }
-export const ALBUM_TAGS = ['コーデ', '手作り', '料理', '庭', '旅', '音とからだ', 'やってみた', '暮らし'];
+export const ALBUM_TAGS = ['コーデ', '手作り', '料理', '庭', '旅', '音とからだ', 'やってみた', '暮らし', '近くの風景'];
 
 import { getCollection } from 'astro:content';
 
