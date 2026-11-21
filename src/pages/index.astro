@@ -35,11 +35,12 @@ const essays = (await getCollection('cards', (c) => c.data.kind === 'エッセ�
   </section>
 
   <section id="kotoba" style="background:var(--bg2);margin-top:48px">
+    <p class="label" style="margin:0;padding-top:88px;text-align:center">ことば</p>
     {kotoba.map((k) => (
-      <div class="narrow" style="padding-top:88px;padding-bottom:88px;text-align:center">
-        <p class="label" style="margin-bottom:28px">ことば</p>
+      <div class="narrow" style="padding-top:48px;padding-bottom:48px;text-align:center">
         <p class="hand" style="margin:0;font-size:26px;line-height:2;font-weight:400">{k.data.hitokoto.map((l, n) => <>{n > 0 && <br />}{l}</>)}</p>
         {k.data.related[0] && <p style="margin:24px 0 0;font-size:14px"><a href={`/stories/${k.data.related[0]}/`}>この言葉が生まれた日 →</a></p>}
+        <p style="margin:20px 0 0;font-size:13px;color:var(--mute)">{dateLabel(k.data.date)}</p>
       </div>
     ))}
     {essays.length > 0 && (
