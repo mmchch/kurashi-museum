@@ -15,7 +15,7 @@ export function dateKey(d?: string): number {
   if (!m) return 0;
   return Number(m[1]) * 10000 + Number(m[2] ?? 0) * 100 + Number(m[3] ?? 0);
 }
-export const ALBUM_TAGS = ['コーデ', '手作り', '料理', '庭', '旅', '音とからだ', 'やってみた', '暮らし', '近くの風景'];
+export const ALBUM_TAGS = ['コーデ', '手作り', '料理', '庭', '旅', '音とからだ', 'やってみた', '暮らし', '近くの風景', 'サンキ'];
 
 import { getCollection } from 'astro:content';
 
@@ -31,7 +31,7 @@ export async function albumPhotos() {
   }
   for (const c of cards) {
     const home = scenes.find((s) => s.data.spots.some((sp) => sp.card === c.id));
-    const href = c.data.page ? `/stories/${c.id}/` : home ? `/museum/${home.id}/` : '/';
+    const href = c.data.page ? `/stories/${c.id}/` : c.data.more ? `/stories/${c.data.more}/` : home ? `/museum/${home.id}/` : '/';
     if (c.data.photo) list.push({ src: c.data.photo, alt: c.data.alt ?? c.data.title, tags: c.data.tags, href, key: dateKey(c.data.date) });
     for (const p of c.data.photos) list.push({ ...p, tags: c.data.tags, href, key: dateKey(c.data.date) });
   }

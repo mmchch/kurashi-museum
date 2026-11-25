@@ -1,20 +1,42 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { ALBUM_TAGS, albumPhotos } from '../../lib';
+import Sanki from '../../components/Sanki.astro';
+import { ALBUM_TAGS, albumPhotos, dateKey } from '../../lib';
 export function getStaticPaths() {
   return ALBUM_TAGS.map((tag) => ({ params: { tag } }));
 }
 const { tag } = Astro.params;
 const photos = (await albumPhotos()).filter((p) => p.tags.includes(tag!));
+// サンキで見つけたモノ：シャツに書かれたメッセージの一覧
+const sanki = tag === 'サンキ'
+  ? (await getCollection('cards', (c) => c.data.tags.includes('サンキ'))).sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date))
+  : [];
 ---
-<Base title={`アルバム：${tag}`}>
+<Base title={tag === 'サンキ' ? 'サンキで見つけたモノ' : `アルバム：${tag}`}>
   <main class="wrap" style="padding-top:48px;padding-bottom:88px">
     <h1 class="hand" style="margin:0 0 24px;font-size:32px">アルバム</h1>
     <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
       <a class="chip" href="/album/">すべて</a>
       {ALBUM_TAGS.map((t) => <a class={t === tag ? 'chip on' : 'chip'} href={`/album/${t}/`} aria-current={t === tag ? 'page' : undefined}>{t}</a>)}
     </div>
-    {photos.length
+    {tag === 'サンキ' ? (
+      <section class="narrow" style="margin:0;padding:0">
+        <h2 class="hand" style="font-size:26px;margin:0 0 16px">サンキで見つけたモノ</h2>
+        <Sanki />
+        <ul style="list-style:none;padding:0;margin:40px 0 0;display:grid;gap:32px">
+          {sanki.map((c) => (
+            <li style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+              {c.data.photo && <a href={c.data.page ? `/stories/${c.id}/` : `/stories/${c.data.more}/`}><img src={c.data.photo} alt={c.data.alt ?? c.data.title} loading="lazy" style="width:160px;height:200px;object-fit:cover;border-radius:4px;display:block" /></a>}
+              <div style="flex:1;min-width:220px">
+                {c.data.message && <p lang="en" class="hand" style="font-size:22px;margin:0 0 8px;line-height:1.6">{c.data.message.split(' / ').map((m) => <span style="display:block">{m}</span>)}</p>}
+                <p style="margin:0;font-size:15px"><a href={c.data.page ? `/stories/${c.id}/` : `/stories/${c.data.more}/`}>{c.data.title} →</a></p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ) : photos.length
       ? <div class="album">{photos.map((p) => <a href={p.href}><img src={p.src} alt={p.alt} loading="lazy" /></a>)}</div>
       : <p style="color:var(--sub)">「{tag}」の写真は、これから増えていきます。</p>}
   </main>

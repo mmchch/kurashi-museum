@@ -37,6 +37,7 @@ const cards = defineCollection({
     marks: z.array(z.object({ x: z.number(), y: z.number(), to: z.string(), label: z.string() })).default([]), // ストーリーの写真の番号 → ページ内の見出しへ          // trueならページの下にphotosを並べる
     hitokoto: z.array(z.string()).default([]),   // 押したときに出る文（本文からそのまま）
     hitokotoPhoto: z.object({ src: z.string(), alt: z.string(), caption: z.string().optional() }).optional(),
+    message: z.string().optional(),              // シャツなどに書かれた英語のメッセージ（サンキのまとめで使う）
     page: z.boolean().default(false),            // 「もっと読む」のページを作るか
     more: z.string().optional(),                 // 「もっと読む」で別のカードのページへ飛ばすとき（カードのファイル名）
     related: z.array(z.string()).default([]),    // つながりのあるカード
