@@ -10,6 +10,7 @@ extraPhotos:
   - { src: /images/cosmos-yoga-3.jpg, alt: コスモス畑の前で、足を大きく開いて体をひねるポーズ }
 spots:
   - { card: magenta-scarf, x: 25, y: 57, popX: 3, popY: 60 }
+  - { card: denim-jacket, x: 34, y: 52, popX: 3, popY: 60 }
   - { card: orange-bag, x: 47, y: 56, popX: 3, popY: 60 }
   - { card: merrell-shoes, x: 83, y: 83, popX: 3, popY: 60 }
 ---
