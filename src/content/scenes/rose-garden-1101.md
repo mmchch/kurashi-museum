@@ -8,6 +8,8 @@ spots:
   - { card: hyakkin-sandal, x: 43, y: 46, popX: 3, popY: 60 }
   - { card: orange-bag, x: 75, y: 54, popX: 3, popY: 60 }
   - { card: hyakkin-ecobag, x: 90, y: 74, popX: 3, popY: 60 }
+  - { card: patagonia-tee, x: 77, y: 66, popX: 3, popY: 60 }
+  - { card: patagonia-joggers, x: 73, y: 86, popX: 3, popY: 40 }
 ---
 
 足上げてと言われたから上げてみた💡それは上げ過ぎだよって言われた😅<br />
