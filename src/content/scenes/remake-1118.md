@@ -7,6 +7,8 @@ alt: 窓辺に立つめぐみ。グレーのシャツの袖口からピンクの
 extraPhotos:
   - { src: /images/remake-1118-1.jpg, alt: 窓辺で振り返るめぐみ。黒いミニスカートと柄のレギンス }
   - { src: /images/remake-1118-3.jpg, alt: 後ろ姿のアップ。裾がメロウ仕上げの黒いミニスカート }
+  - { src: /images/remake-1118-before.jpg, alt: 切る前の黒いハイネックのシャツ。横にメジャー }
+  - { src: /images/remake-1118-cut.jpg, alt: はさみで上下に切ったハイネックのシャツ }
 spots:
   - { card: remake-miniskirt, x: 69, y: 68, popX: 3, popY: 60 }
   - { card: temu-leggings, x: 63, y: 84, popX: 3, popY: 40 }
