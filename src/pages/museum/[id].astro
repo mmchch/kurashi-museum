@@ -19,7 +19,18 @@ const d = scene.data;
       <h1 class="hand" style="margin:0 0 28px;font-size:32px;line-height:1.5">{d.title}</h1>
       <div class="prose"><Content /></div>
       <p style="font-size:14px;color:var(--sub)">写真の中の丸を押すと、その品物のひとことが読めます。</p>
-      {d.extraPhotos.map((p) => <img src={p.src} alt={p.alt} loading="lazy" style="width:140px;height:180px;object-fit:cover;border-radius:3px;margin-top:24px" />)}
+      {d.extraPhotos.length > 0 && (
+        <div class="extra-photos">
+          {d.extraPhotos.map((p) => (
+            <figure>
+              <a href={p.href ?? p.src} target={p.href ? undefined : '_blank'} rel={p.href ? undefined : 'noopener'}>
+                <img src={p.src} alt={p.alt} loading="lazy" />
+              </a>
+              {p.caption && <figcaption>{p.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      )}
       <p style="margin-top:40px;font-size:14px"><a href="/#museum" style="color:var(--ink);text-decoration:none">← 博物館の入り口へ</a></p>
     </div>
   </main>

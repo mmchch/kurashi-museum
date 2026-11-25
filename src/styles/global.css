@@ -91,3 +91,8 @@ a{color:var(--accent)} a:hover{color:var(--accent-dark)}
 a.dot{text-decoration:none}
 .num{display:inline-block;width:26px;height:26px;margin-right:10px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--sans);font-size:13px;line-height:26px;text-align:center;vertical-align:4px}
 .prose h2[id]{scroll-margin-top:24px}
+/* 博物館の展示：2枚目以降の写真（大きめ・一言つき） */
+.extra-photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:28px}
+.extra-photos figure{margin:0}
+.extra-photos img{width:100%;height:auto;display:block;border-radius:4px}
+.extra-photos figcaption{font-size:14px;line-height:1.7;color:var(--sub);margin-top:8px}

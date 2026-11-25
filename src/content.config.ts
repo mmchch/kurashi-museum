@@ -11,7 +11,12 @@ const scenes = defineCollection({
     tags: z.array(z.string()).default([]),
     photo: z.string(),
     alt: z.string(),
-    extraPhotos: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
+    extraPhotos: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+      caption: z.string().optional(),   // 写真の下に出す一言（本人の言葉）
+      href: z.string().optional(),      // 押したときに飛ぶ先（なければ写真を大きく開く）
+    })).default([]),
     spots: z.array(z.object({
       card: z.string(),               // cards のファイル名
       x: z.number(),                  // 写真の左から何%
