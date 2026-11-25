@@ -6,7 +6,7 @@ photo: /images/halloween-2024.jpg
 alt: 悪魔の赤い角をつけ、赤い付け襟とサテンのベルトのコスチュームで、ハロウィンの飾りを見上げて笑うめぐみ
 spots:
   - { card: devil-horns, x: 64, y: 38, popX: 3, popY: 60 }
-  - { card: dracula-collar, x: 50, y: 49, popX: 3, popY: 60 }
+  - { card: dracula-collar, x: 60, y: 49, popX: 3, popY: 60 }
   - { card: satin-belt, x: 46, y: 69, popX: 3, popY: 10 }
 ---
 
