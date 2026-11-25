@@ -5,8 +5,8 @@ tags: [手作り, コーデ]
 photo: /images/muji-remake-0817.jpg
 alt: 夏の明るいリビングに立つめぐみ。緑のタンクトップに、前でギャザーを寄せた淡い緑の上着、グレーのパンツ
 extraPhotos:
-  - { src: /images/muji-remake-before.jpg, alt: リメイクする前の、淡い緑の無印のシャツ }
-  - { src: /images/muji-remake-cut.jpg, alt: 襟を切って前開きにカットしたシャツ }
+  - { src: /images/muji-remake-before.jpg, alt: リメイクする前の、淡い緑の無印のシャツ, caption: "リメイクする前の無印のシャツ" }
+  - { src: /images/muji-remake-cut.jpg, alt: 襟を切って前開きにカットしたシャツ, caption: "襟を切って前開きにしたところ" }
 spots:
   - { card: muji-remake-top, x: 57, y: 42, popX: 3, popY: 10 }
   - { card: sanki-tank, x: 52, y: 62, popX: 3, popY: 10 }

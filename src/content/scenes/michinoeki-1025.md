@@ -5,7 +5,7 @@ tags: [旅, コーデ]
 photo: /images/michinoeki-1025-1.jpg
 alt: 長野の道の駅の駐車場。モヤのかかった山を背に、白い車の前で片足を上げてポーズをとるめぐみ
 extraPhotos:
-  - { src: /images/michinoeki-1025-2.jpg, alt: 白い車の前で、腕を広げて足先を上げるポーズ }
+  - { src: /images/michinoeki-1025-2.jpg, alt: 白い車の前で、腕を広げて足先を上げるポーズ, caption: "足先ツン！のもう1枚" }
 spots:
   - { card: patagonia-joggers, x: 43, y: 67, popX: 3, popY: 40 }
   - { card: hyakkin-sandal, x: 70, y: 94, popX: 3, popY: 40 }

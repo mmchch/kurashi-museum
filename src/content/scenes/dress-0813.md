@@ -5,8 +5,8 @@ tags: [手作り, コーデ]
 photo: /images/dress-0813-indian.jpg
 alt: ハンガーにかけた、青地に白い花柄のインド綿のキャミソールワンピース
 extraPhotos:
-  - { src: /images/dress-0813-yardsale.jpg, alt: アメリカのヤードセールで1ドルで買った、黒地に小花柄のワンピース }
-  - { src: /images/dress-0813-dalmatian.jpg, alt: 練習で作った、ダルメシアン柄のワンピース }
+  - { src: /images/dress-0813-yardsale.jpg, alt: アメリカのヤードセールで1ドルで買った、黒地に小花柄のワンピース, caption: "2枚のワンピースのベースになった、ヤードセールの1ドルのワンピース" }
+  - { src: /images/dress-0813-dalmatian.jpg, alt: 練習で作った、ダルメシアン柄のワンピース, caption: "練習で作ったダルメシアン" }
 spots:
   - { card: indian-cotton-dress, x: 50, y: 55, popX: 3, popY: 10 }
 ---
